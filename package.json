@@ -1,0 +1,15 @@
+{
+    "name": "cog",
+    "dependencies": {
+        "ol": "7.1.0",
+        "ol-layerswitcher": "^4.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "latest",
+        "vite": "^3.0.3"
+    },
+    "scripts": {
+        "start": "vite",
+        "build": "vite build"
+    }
+}
