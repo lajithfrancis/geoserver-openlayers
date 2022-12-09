@@ -63,10 +63,7 @@ const customLayer = new ImageLayer({
   visible: true,
   // extent: extent,
   source: new ImageWMS({
-    // attributions: ['Iowa State University'],
-    // url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
     url: 'http://localhost:8080/geoserver/wms',
-    // params: {'LAYERS': 'nexrad-n0r-wmst'},
     params: {'LAYERS': 'IDW:timeseries_data_punjab', 'TIME': '2021-06-10'},
     serverType: 'geoserver'
   }),
@@ -76,16 +73,6 @@ var overlays = new TileGoup({
   title: 'Overlays',
   layers: [customLayer]
 })
-// const layers = [
-//   new TileLayer({
-//     extent: extent,
-//     source: new TileWMS({
-//       attributions: ['Iowa State University'],
-//       url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
-//       params: {'LAYERS': 'nexrad-n0r-wmst', 'time': '2021-06-10'},
-//     }),
-//   }),
-// ];
 
 const view = new View({
   projection:'EPSG:4326',
@@ -94,12 +81,7 @@ const view = new View({
 });
 
 const map = new Map({
-  // layers: layers,
   target: 'map',
-  // view: new View({
-  //   center: getCenter(extent),
-  //   zoom: 4,
-  // }),
   view: view
 });
 
