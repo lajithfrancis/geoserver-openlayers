@@ -58,16 +58,14 @@ var basemaps = new TileGoup({
 
 
 var dates = ['2022-06-10','2022-06-26','2022-07-12','2022-07-28','2022-08-13','2022-08-29','2022-09-14','2022-09-30','2022-10-16','2022-11-01','2022-11-17','2022-12-03','2022-12-19','2022-01-01','2022-01-17','2022-02-02','2022-02-18','2022-03-06','2022-03-22','2022-04-07','2022-04-23','2022-05-09'];
-const customLayer = new ImageLayer({
+const customLayer = new TileLayer({
   title: 'Custom',
   visible: true,
   // extent: extent,
-  source: new ImageWMS({
-    // attributions: ['Iowa State University'],
-    // url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
-    url: 'http://localhost:8080/geoserver/wms',
-    // params: {'LAYERS': 'nexrad-n0r-wmst'},
-    params: {'LAYERS': 'IDW:timeseries_data_punjab', 'TIME': '2021-06-10'},
+  source: new TileWMS({
+    attributions: ['Iowa State University'],
+    url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
+    params: {'LAYERS': 'nexrad-n0r-wmst'},
     serverType: 'geoserver'
   }),
 });
@@ -96,11 +94,11 @@ const view = new View({
 const map = new Map({
   // layers: layers,
   target: 'map',
-  // view: new View({
-  //   center: getCenter(extent),
-  //   zoom: 4,
-  // }),
-  view: view
+  view: new View({
+    center: getCenter(extent),
+    zoom: 4,
+  }),
+  // view: view
 });
 
 map.addLayer(basemaps);
