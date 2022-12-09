@@ -3,14 +3,12 @@ import Stamen from 'ol/source/Stamen';
 import TileLayer from 'ol/layer/Tile';
 import TileGoup from 'ol/layer/Group';
 import TileWMS from 'ol/source/TileWMS';
-import ImageWMS from 'ol/source/ImageWMS';
 import View from 'ol/View';
 import {getCenter} from 'ol/extent';
 import {transformExtent} from 'ol/proj';
 import XYZ from 'ol/source/XYZ';
 import osm from 'ol/source/OSM';
 import LayerSwitcher from 'ol-layerswitcher';
-import ImageLayer from 'ol/layer/Image';
 
 function threeHoursAgo() {
   return new Date(Math.round(Date.now() / 3600000) * 3600000 - 3600000 * 3);
@@ -55,8 +53,6 @@ var basemaps = new TileGoup({
   layers:[satellite, OSM, terrain]
 });
 
-
-
 var dates = ['2022-06-10','2022-06-26','2022-07-12','2022-07-28','2022-08-13','2022-08-29','2022-09-14','2022-09-30','2022-10-16','2022-11-01','2022-11-17','2022-12-03','2022-12-19','2022-01-01','2022-01-17','2022-02-02','2022-02-18','2022-03-06','2022-03-22','2022-04-07','2022-04-23','2022-05-09'];
 const customLayer = new TileLayer({
   title: 'Custom',
@@ -74,31 +70,13 @@ var overlays = new TileGoup({
   title: 'Overlays',
   layers: [customLayer]
 })
-// const layers = [
-//   new TileLayer({
-//     extent: extent,
-//     source: new TileWMS({
-//       attributions: ['Iowa State University'],
-//       url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
-//       params: {'LAYERS': 'nexrad-n0r-wmst', 'time': '2021-06-10'},
-//     }),
-//   }),
-// ];
-
-const view = new View({
-  projection:'EPSG:4326',
-  center:[75.86,30.90],
-  zoom:8
-});
 
 const map = new Map({
-  // layers: layers,
   target: 'map',
   view: new View({
     center: getCenter(extent),
     zoom: 4,
   }),
-  // view: view
 });
 
 map.addLayer(basemaps);
