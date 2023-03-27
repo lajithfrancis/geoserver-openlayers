@@ -18,7 +18,7 @@ const extent = transformExtent([-126, 24, -66, 50], 'EPSG:4326', 'EPSG:3857');
 // let startDate = threeHoursAgo();
 const frameRate = 0.5; // frames per second
 let animationId = null;
-var satellite =  new TileLayer({
+const satellite =  new TileLayer({
   title: 'Satellite',
   type: 'base',
   visible: true,
@@ -32,14 +32,14 @@ var satellite =  new TileLayer({
   })
 });
 
-var OSM =  new TileLayer({
+const OSM =  new TileLayer({
   title: 'OSM',
   type: 'base',
   visible: true,
   source: new osm()
 });
 
-var terrain = new TileLayer({
+const terrain = new TileLayer({
   title: 'terrain',
   type: 'base',
   visible: true,
@@ -48,12 +48,12 @@ var terrain = new TileLayer({
   }),
 })
 
-var basemaps = new TileGoup({
+const basemaps = new TileGoup({
   title: 'Base Maps',
   layers:[satellite, OSM, terrain]
 });
 
-var dates = ['2022-06-10','2022-06-26','2022-07-12','2022-07-28','2022-08-13','2022-08-29','2022-09-14','2022-09-30','2022-10-16','2022-11-01','2022-11-17','2022-12-03','2022-12-19','2022-01-01','2022-01-17','2022-02-02','2022-02-18','2022-03-06','2022-03-22','2022-04-07','2022-04-23','2022-05-09'];
+const dates = ['2022-06-10','2022-06-26','2022-07-12','2022-07-28','2022-08-13','2022-08-29','2022-09-14','2022-09-30','2022-10-16','2022-11-01','2022-11-17','2022-12-03','2022-12-19','2022-01-01','2022-01-17','2022-02-02','2022-02-18','2022-03-06','2022-03-22','2022-04-07','2022-04-23','2022-05-09'];
 const customLayer = new TileLayer({
   title: 'Custom',
   visible: true,
@@ -66,7 +66,7 @@ const customLayer = new TileLayer({
   }),
 });
 
-var overlays = new TileGoup({
+const overlays = new TileGoup({
   title: 'Overlays',
   layers: [customLayer]
 })
@@ -82,14 +82,14 @@ const map = new Map({
 map.addLayer(basemaps);
 map.addLayer(overlays);
 
-var sliderRange = document.getElementById("myRange");
+const sliderRange = document.getElementById("myRange");
 sliderRange.max = dates.length - 1;
 
 function updateInfo() {
   const el = document.getElementById('info');
   el.innerHTML = new Date(startDate).toISOString();
 }
-var i = 0;
+let i = 0;
 let startDate = dates[i]
 
 function setTime() {
@@ -134,7 +134,7 @@ stopButton.addEventListener('click', stop, false);
 
 updateInfo();
 
-var layerSwitcher = new LayerSwitcher({
+const layerSwitcher = new LayerSwitcher({
   activationMode: 'click',
   startActive: true,
   tipLabel: 'Layers', // Optional label for button
